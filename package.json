@@ -1,0 +1,44 @@
+{
+  "name": "school-crm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3002",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.2",
+    "@reduxjs/toolkit": "^2.7.0",
+    "@svgr/webpack": "^8.1.0",
+    "@tanstack/react-query": "^5.75.0",
+    "axios": "^1.10.0",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.5.0",
+    "formik": "^2.4.6",
+    "framer-motion": "^12.9.2",
+    "localforage": "^1.10.0",
+    "lucide-react": "^0.525.0",
+    "next": "14.2.25",
+    "next-pwa": "^5.6.0",
+    "react": "^18",
+    "react-calendar": "^6.0.0",
+    "react-datepicker": "^8.3.0",
+    "react-dom": "^18",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "@types/minimatch": "^6.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.25",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

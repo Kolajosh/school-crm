@@ -1,0 +1,35 @@
+.wrapper {
+  letter-spacing: 0.02em;
+}
+
+.container {
+  width: 100%;
+}
+
+.icon-wrapper.nav-icon svg path {
+  stroke: black;
+}
+
+.icon-wrapper:hover * {
+  color: #fff;
+}
+
+.icon-wrapper.active.nav-icon svg path,
+.icon-wrapper:hover.nav-icon svg path {
+  stroke: #fff;
+}
+
+.icon-wrapper.active:not(.nav-icon) svg path,
+.icon-wrapper:hover:not(.nav-icon) svg path {
+  fill: black;
+}
+
+@media screen and (min-width: 768px) {
+  .container.open {
+    width: 256px;
+  }
+
+  .container.close {
+    width: 80px;
+  }
+}

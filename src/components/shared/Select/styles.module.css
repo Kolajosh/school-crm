@@ -1,0 +1,31 @@
+.container {
+	position: relative;
+}
+
+.container button * {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #323233;
+}
+
+.container button.active {
+	color: var(--app-primary-400);
+}
+
+.icon {
+	position: absolute;
+	left: 3%;
+	bottom: 20%;
+}
+
+.container.error > div:first-child {
+	border: 1px solid var(--app-red-400);
+}
+
+.error-message {
+	font-weight: 400;
+	margin-top: 3px;
+	color: var(--app-red-400);
+	font-size: 0.8rem;
+}

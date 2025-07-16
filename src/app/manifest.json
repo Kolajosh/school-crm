@@ -1,0 +1,17 @@
+{
+  "name": "PWA Next.js",
+  "short_name": "pwa-nextjs",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons/mag.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "splash_pages": null
+}

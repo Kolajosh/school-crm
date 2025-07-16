@@ -1,0 +1,8 @@
+.wrapper {
+    background: var(--app-grey-150);
+    min-height: 100vh;
+}
+
+.container {
+    position: relative;
+}
