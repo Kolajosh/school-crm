@@ -14,7 +14,7 @@ const Header: FC<{
       <header
         className={`${styles.container} ${
           styles.nav
-        } p-5 flex justify-between items-center gap-3 md:gap-6 ${
+        } px-5 py-8 flex justify-between items-center gap-3 md:gap-6 ${
           !sideNavIsOpen && "md:pl-10"
         }`}
       >
@@ -25,11 +25,13 @@ const Header: FC<{
         >
           <Hamburger />
         </button>
+        <p>Welcome back, Admin ☀️</p>
+
         <div className="flex items-center gap-4 ml-auto">
           <Message />
           <Bell />
-          <User />
           <span className="hidden md:block">Downtown High School</span>
+          <User />
         </div>
       </header>
     </div>

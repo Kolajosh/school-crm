@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import { useAppSelector } from "@/store";
 import { INavItem } from "./SidebarContent";
 import Link from "next/link";
-import { ArrowDown2, ArrowDownNav } from "@/assets";
+import { ArrowDownNav } from "@/assets";
 // import { ArrowDownNav } from "@/app/assets";
 
 const SidebarItem: React.FC<{

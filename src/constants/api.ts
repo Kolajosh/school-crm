@@ -21,4 +21,10 @@ export const endpoints = {
   auth: {
     login: "/login",
   },
+  dasboard: {
+    adminDashboard: "/admin/dashboard",
+  },
+  teachers: {
+    getTeachers: "/teachers",
+  },
 };

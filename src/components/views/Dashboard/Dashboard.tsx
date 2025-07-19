@@ -1,53 +1,94 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { MetricsCard } from "./components";
 import { ProgressBar, SimpleCard } from "@/components/shared";
 import Calendar from "react-calendar";
+import { useAdminDashboard } from "@/hooks";
+import { useAppSelector } from "@/store";
 
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const Dashboard = () => {
+  const state = useAppSelector((state) => state?.auth);
+  console.log(state);
+
   const [value, onChange] = useState<Value>(new Date());
+  const { dashboardData } = useAdminDashboard();
+
+  const data = useMemo(() => dashboardData?.data, [dashboardData]);
+  console.log(data);
 
   return (
     <>
       <div className="space-y-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <MetricsCard title="Teachers" value={70} change="" />
-          <MetricsCard title="Students" value={56} change="" />
-          <MetricsCard title="Classes" value={12} change="" />
-          <MetricsCard title="Daily Attendance" value={51} change="" />
+        <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <MetricsCard
+            title="Teachers"
+            value={data?.totals?.teachers || 0}
+            change=""
+          />
+          <MetricsCard
+            title="Students"
+            value={data?.totals?.students || 0}
+            change=""
+          />
+          <MetricsCard
+            title="Classes"
+            value={data?.totals?.classes || 0}
+            change=""
+          />
+          <MetricsCard
+            title="Daily Attendance"
+            value={data?.attendance_today?.total || 0}
+            change=""
+          />
         </div>
 
-        <div className="w-full flex gap-5">
-          <div className="w-[65%] space-y-5">
-            <SimpleCard
-              title="Welcome to Admin Dashboard"
-              titleColor="#ff808b"
-              bgColor="#f7e5e9"
-              hasShadow={false}
-            >
-              <div>
-                <p className="text-[#777]">
-                  Enjoy World&apos;s No.1 Education Software.
-                </p>
+        <div className="w-full flex flex-col md:flex-row gap-5">
+          <div className="w-full md:w-[65%] space-y-5">
+            <SimpleCard title="Recent Activities">
+              <div className="w-full overflow-x-auto">
+                <div className="flex gap-4">
+                  {data?.recent_activities?.map((activity) => (
+                    <div
+                      key={activity.id}
+                      className="min-w-[220px] shrink-0 bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
+                    >
+                      <p className="text-xs font-semibold capitalize text-[#7839EE]">
+                        {activity.type}
+                      </p>
+                      <p className="text-sm mt-1 font-medium">
+                        {activity.title}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-2">
+                        {activity.time}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </SimpleCard>
-            <SimpleCard
-              title="New Admissions"
-              titleColor="#ff808b"
-            ></SimpleCard>
-            <SimpleCard
-              title="Today Absent Students"
-              titleColor="#ff808b"
-            ></SimpleCard>
-            <SimpleCard
-              title="Today Present Employees"
-              titleColor="#ff808b"
-            ></SimpleCard>
+            <SimpleCard title="New Admissions"></SimpleCard>
+            <SimpleCard title="Attendance Today">
+              <div className="flex gap-4">
+                {Object.entries(data?.attendance_today || {}).map(
+                  ([key, value]) => (
+                    <div
+                      key={key}
+                      className="min-w-[100px] shrink-0 bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
+                    >
+                      <p className="text-xs font-semibold capitalize text-[#7839EE]">
+                        {key}
+                      </p>
+                      <p className="text-sm mt-1 font-medium">{value}</p>
+                    </div>
+                  )
+                )}
+              </div>
+            </SimpleCard>
           </div>
-          <div className="w-[35%] space-y-5">
+          <div className="w-full md:w-[35%] space-y-5">
             <SimpleCard>
               <div className="space-y-4">
                 <ProgressBar label="Todays Present Students" percentage={100} />

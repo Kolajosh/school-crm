@@ -17,7 +17,7 @@ export const dashboardNavigation = [
   },
   {
     title: "Classes",
-    url: APP_PATHS.EMPLOYEES,
+    url: "#",
     icon: ClassesIcon,
   },
   {

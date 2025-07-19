@@ -12,10 +12,9 @@ export type User = {
   updated_at: string;
 };
 
-export type IAuthResponse = {
-  user: User;
-  profile: null;
-  role: "admin" | string;
-  token: string;
-  token_type: string;
-};
+export interface IResponseBody<T> {
+  message: string;
+  success: boolean;
+  httpStatusCode: number;
+  data: T;
+}
