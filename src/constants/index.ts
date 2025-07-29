@@ -5,6 +5,7 @@ export * from "./api";
 
 export const APP_PATHS = {
   LOGIIN: "/",
+  REGISTER: "/register",
   DASHBOARD: "/dashboard",
   EMPLOYEES: "/employees",
   EMPLOYEES_ADD: "/employees/add",

@@ -20,6 +20,7 @@ export const REQUEST_METHODS = {
 export const endpoints = {
   auth: {
     login: "/login",
+    register: "/register",
   },
   dasboard: {
     adminDashboard: "/admin/dashboard",

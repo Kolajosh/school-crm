@@ -30,7 +30,16 @@ export const authService = apiSlice.injectEndpoints({
       }),
       transformResponse: (response: IResponseBody<IAuthResponse>) => response,
     }),
+
+    register: builder.mutation({
+      query: (values) => ({
+        url: endpoints.auth.register,
+        method: REQUEST_METHODS.POST,
+        body: values,
+      }),
+      transformResponse: (response: IResponseBody<IAuthResponse>) => response,
+    }),
   }),
 });
 
-export const { useLoginMutation } = authService;
+export const { useLoginMutation, useRegisterMutation } = authService;

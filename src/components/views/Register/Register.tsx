@@ -2,28 +2,30 @@
 import React from "react";
 import { Hero } from "@/assets/png";
 import { Button, Input } from "@/components/shared";
-import { useLoginMutation } from "@/services";
+import { useLoginMutation, useRegisterMutation } from "@/services";
 import { useFormik } from "formik";
 import { setCookie } from "@/utils";
 import { loginSuccess, setRole, useAppDispatch } from "@/store";
 import { useRouter } from "next/navigation";
 import { APP_PATHS } from "@/constants";
-import { loginSchema } from "@/validations";
+import { registerSchema } from "@/validations";
 
-const Login = () => {
+const Register = () => {
   const router = useRouter();
-  const [triggerLogin, { isLoading }] = useLoginMutation();
+  const [triggerRegister, { isLoading }] = useRegisterMutation();
   const dispatch = useAppDispatch();
   const initialValues = {
     email: "",
+    name: "",
     password: "",
+    password_confirmation: "",
   };
 
   const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
       try {
-        const response = await triggerLogin(values).unwrap();
+        const response = await triggerRegister(values).unwrap();
         if (response.success) {
           console.log(response?.data);
 
@@ -37,10 +39,15 @@ const Login = () => {
         console.log(error);
       }
     },
-    validationSchema: loginSchema,
+    validationSchema: registerSchema,
   });
 
-  const { isValid, dirty, handleSubmit } = formik;
+  const { isValid, dirty, handleSubmit, errors } = formik;
+
+  console.log(isValid);
+  console.log(dirty);
+  console.log(errors);
+  
 
   return (
     <>
@@ -62,6 +69,14 @@ const Login = () => {
             </div>
             <div>
               <Input
+                name="name"
+                label="Name"
+                placeholder="Enter your full name"
+                formik={formik}
+              />
+            </div>
+            <div>
+              <Input
                 name="email"
                 label="Email"
                 placeholder="Enter your email address"
@@ -72,24 +87,34 @@ const Login = () => {
               <Input
                 name="password"
                 label="Password"
+                type="password"
                 placeholder="Enter your password"
+                formik={formik}
+              />
+            </div>
+            <div>
+              <Input
+                name="password_confirmation"
+                label="Confirm Password"
+                type="password"
+                placeholder="Confirm your password"
                 formik={formik}
               />
             </div>
             <div>
               <Button
                 className="!w-full"
-                text="Sign in"
+                text="Register"
                 disabled={!(dirty && isValid) || isLoading}
                 onClick={handleSubmit}
               />
               <p className="text-sm mt-3">
-                New to our platform?{" "}
+                Existing Customer?{" "}
                 <span
-                  onClick={() => router.push(APP_PATHS.REGISTER)}
+                  onClick={() => router.push(APP_PATHS.LOGIIN)}
                   className="text-blue-900 cursor-pointer"
                 >
-                  Create an account
+                  Log in
                 </span>
               </p>
             </div>
@@ -100,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
