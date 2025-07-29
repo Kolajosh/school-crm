@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const AddEmployee = () => {
   const router = useRouter();
-  const { qualifications, specialties, loading } = useTeachers();
+  const { qualifications, specialties } = useTeachers();
   const [addTeacherTrigger, { isLoading }] = useAddNewTeacherMutation();
 
   const initialValues = {
@@ -102,7 +102,11 @@ const AddEmployee = () => {
                   variant="outlined"
                   onClick={addFormik.resetForm}
                 />
-                <Button type="submit" text="Submit" />
+                <Button
+                  type="submit"
+                  text={isLoading ? "Submitting" : "Submit"}
+                  disabled={isLoading}
+                />
               </div>
             </form>
           </div>
