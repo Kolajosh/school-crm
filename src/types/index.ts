@@ -1,1 +1,40 @@
 export * from "./response";
+
+export type Qualification =
+  | "High School Diploma"
+  | "Associate Degree"
+  | "Bachelor's Degree"
+  | "Master's Degree"
+  | "Doctorate (Ph.D.)"
+  | "Professional Certification"
+  | "Trade School Diploma"
+  | "Postgraduate Certificate/Diploma"
+  | "Other";
+
+export type SubjectSpecialty =
+  | "Mathematics"
+  | "English Language"
+  | "Science"
+  | "Physics"
+  | "Chemistry"
+  | "Biology"
+  | "History"
+  | "Geography"
+  | "Economics"
+  | "Government"
+  | "Literature"
+  | "Computer Science"
+  | "Arts"
+  | "Music"
+  | "Physical Education"
+  | "French"
+  | "Spanish"
+  | "German"
+  | "Arabic"
+  | "Religious Studies"
+  | "Technical Drawing"
+  | "Home Economics"
+  | "Agriculture"
+  | "Business Studies"
+  | "Accounting"
+  | "Other";

@@ -26,5 +26,7 @@ export const endpoints = {
   },
   teachers: {
     getTeachers: "/teachers",
+    getQualificationAndSpecializationDropdown: "/teachers/dropdown-options",
+    addTeacher: "/teachers",
   },
 };
