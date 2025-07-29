@@ -55,11 +55,11 @@ button.container:disabled {
 .container.outlined {
   font-weight: 500;
   background-color: var(--app-white);
-  border: 2px solid var(--app-primary-400);
+  border: 1px solid #091055;
 }
 
 .container.outlined * {
-  color: var(--app-primary-400);
+  color: black;
 }
 
 .container .no-background * {

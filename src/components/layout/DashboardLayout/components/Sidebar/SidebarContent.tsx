@@ -9,6 +9,7 @@ import { dashboardNavigation } from "@/constants/navigation";
 import { Chevron } from "@/assets";
 import { handleLogoutRedirect } from "@/utils";
 import Link from "next/link";
+import { LogOutIcon } from "lucide-react";
 // import { Image } from "@/components/shared";
 
 export interface INavItem {
@@ -110,13 +111,13 @@ const SidebarContent: React.FC<{
             title="Settings"
             onClick={handleLogout}
             url=""
-          />
+          /> */}
           <SidebarItemWrapper
-            icon={LogoutIcon}
+            icon={LogOutIcon}
             title="Log out"
             onClick={handleLogout}
             url=""
-          /> */}
+          />
         </div>
       </motion.div>
     </div>

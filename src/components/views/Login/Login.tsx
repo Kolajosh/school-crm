@@ -23,10 +23,12 @@ const Login = () => {
     onSubmit: async (values) => {
       try {
         const response = await triggerLogin(values).unwrap();
-        if (response?.user) {
-          setCookie("_tk", response?.token);
-          dispatch(loginSuccess(response?.user));
-          dispatch(setRole(response?.role));
+        if (response.success) {
+          console.log(response?.data);
+
+          setCookie("_tk", response?.data?.access_token);
+          dispatch(loginSuccess(response?.data?.user));
+          dispatch(setRole(response?.data?.role));
           router.push(APP_PATHS.DASHBOARD);
         }
         console.log(response);

@@ -21,4 +21,12 @@ export const endpoints = {
   auth: {
     login: "/login",
   },
+  dasboard: {
+    adminDashboard: "/admin/dashboard",
+  },
+  teachers: {
+    getTeachers: "/teachers",
+    getQualificationAndSpecializationDropdown: "/teachers/dropdown-options",
+    addTeacher: "/teachers",
+  },
 };
