@@ -2,13 +2,14 @@
 import React from "react";
 import { Hero } from "@/assets/png";
 import { Button, Input } from "@/components/shared";
-import { useLoginMutation, useRegisterMutation } from "@/services";
+import { useRegisterMutation } from "@/services";
 import { useFormik } from "formik";
-import { setCookie } from "@/utils";
+import { getErrorMessage, setCookie } from "@/utils";
 import { loginSuccess, setRole, useAppDispatch } from "@/store";
 import { useRouter } from "next/navigation";
 import { APP_PATHS } from "@/constants";
 import { registerSchema } from "@/validations";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const router = useRouter();
@@ -27,27 +28,21 @@ const Register = () => {
       try {
         const response = await triggerRegister(values).unwrap();
         if (response.success) {
-          console.log(response?.data);
-
+          toast.success(response?.message || "Registration successful");
           setCookie("_tk", response?.data?.access_token);
           dispatch(loginSuccess(response?.data?.user));
           dispatch(setRole(response?.data?.role));
           router.push(APP_PATHS.DASHBOARD);
         }
-        console.log(response);
       } catch (error) {
-        console.log(error);
+        const message = getErrorMessage(error);
+        toast.error(message || "Something went wrong");
       }
     },
     validationSchema: registerSchema,
   });
 
-  const { isValid, dirty, handleSubmit, errors } = formik;
-
-  console.log(isValid);
-  console.log(dirty);
-  console.log(errors);
-  
+  const { isValid, dirty, handleSubmit } = formik;
 
   return (
     <>

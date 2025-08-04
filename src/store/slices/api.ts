@@ -37,11 +37,19 @@ const baseQueryWithReauth: BaseQueryFn<
 
   const result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && (result.error as { status?: number }).status === 401) {
+  if (
+    result.error &&
+    (result.error as { status?: number }).status === 401 &&
+    window.location.pathname !== "/"
+  ) {
     handleLogoutRedirect();
   }
 
-  if (result.error && (result.error as { status?: number }).status === 401) {
+  if (
+    result.error &&
+    (result.error as { status?: number }).status === 401 &&
+    window.location.pathname !== "/"
+  ) {
     handleLogoutRedirect();
   }
   return result;

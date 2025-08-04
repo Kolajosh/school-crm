@@ -52,3 +52,32 @@ export const handleLogoutRedirect = () => {
 };
 
 export { dayjs as dayJs };
+
+/**
+ * Extract a user-friendly error message from an error object
+ * @param error - The error object
+ * @returns {string} - The extracted error message
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getErrorMessage = (error: any): string => {
+  const responseData = error?.response?.data || error?.data;
+
+  // Handle field-level validation errors like `errors: { email: [...] }`
+  const fieldErrors = responseData?.errors;
+  if (fieldErrors && typeof fieldErrors === "object") {
+    const messages = Object.values(fieldErrors).flat().filter(Boolean);
+    if (messages.length > 0) {
+      return messages.join(" ");
+    }
+  }
+
+  return (
+    responseData?.message || // e.g. "Invalid credentials"
+    responseData?.title || // fallback title
+    (typeof responseData === "string"
+      ? responseData
+      : error?.response?.statusText) ||
+    error?.message ||
+    "An unknown error occurred"
+  );
+};

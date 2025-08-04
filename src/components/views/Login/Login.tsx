@@ -4,11 +4,12 @@ import { Hero } from "@/assets/png";
 import { Button, Input } from "@/components/shared";
 import { useLoginMutation } from "@/services";
 import { useFormik } from "formik";
-import { setCookie } from "@/utils";
+import { getErrorMessage, setCookie } from "@/utils";
 import { loginSuccess, setRole, useAppDispatch } from "@/store";
 import { useRouter } from "next/navigation";
 import { APP_PATHS } from "@/constants";
 import { loginSchema } from "@/validations";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const router = useRouter();
@@ -25,16 +26,15 @@ const Login = () => {
       try {
         const response = await triggerLogin(values).unwrap();
         if (response.success) {
-          console.log(response?.data);
-
+          toast.success(response?.message || "Login successful");
           setCookie("_tk", response?.data?.access_token);
           dispatch(loginSuccess(response?.data?.user));
           dispatch(setRole(response?.data?.role));
           router.push(APP_PATHS.DASHBOARD);
         }
-        console.log(response);
       } catch (error) {
-        console.log(error);
+        const message = getErrorMessage(error);
+        toast.error(message || "Something went wrong");
       }
     },
     validationSchema: loginSchema,
