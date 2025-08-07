@@ -2,7 +2,7 @@ import { endpoints, REQUEST_METHODS } from "@/constants";
 import { apiSlice } from "@/store/slices";
 import { IResponseBody } from "@/types";
 
-export type User = {
+export type IUser = {
   id: number;
   name: string;
   email: string;
@@ -13,7 +13,7 @@ export type User = {
 };
 
 export type IAuthResponse = {
-  user: User;
+  user: IUser;
   profile: null;
   role: "admin" | string;
   access_token: string;

@@ -10,6 +10,10 @@ import { Chevron } from "@/assets";
 import { handleLogoutRedirect } from "@/utils";
 import Link from "next/link";
 import { LogOutIcon } from "lucide-react";
+import { SidebarItem } from "./SidebarItem";
+import Image from "next/image";
+import { Logo } from "@/assets/png";
+import { APP_PATHS } from "@/constants";
 // import { Image } from "@/components/shared";
 
 export interface INavItem {
@@ -54,16 +58,16 @@ const SidebarContent: React.FC<{
       <motion.div
         className={`${styles["container"]} ${
           isOpen ? styles["open"] : styles["close"]
-        } h-full flex-grow bg-white flex flex-col py-2 border rounded-xl border-[#E4E4E7] relative`}
+        } h-full flex-grow bg-white flex flex-col p-2 shadow-lg relative`}
       >
         <div
           className={`flex justify-between items-center p-2 ${
             !isOpen ? "" : "gap-3 md:gap-6"
           }`}
         >
-          <Link href={"#"}>
+          <Link href={APP_PATHS.DASHBOARD}>
             <div className="flex items-center gap-2 justify-center h-10">
-              {/* <Logo width={32} height={32} /> */}
+              <Image src={Logo} width={45} height={45} alt="EDS Logo" />
               <div className={`${!isOpen && "hidden"}`}>
                 <p className="text-sm font-semibold">EduSphere</p>
               </div>
@@ -85,7 +89,7 @@ const SidebarContent: React.FC<{
         </div>
 
         <div
-          className={`mt-2 pt-2 flex flex-col gap-4 no-scrollbar mb-auto ${className}`}
+          className={`mt-2 pt-2 flex flex-col gap-3 no-scrollbar mb-auto ${className}`}
         >
           <div
             className={`${
@@ -105,18 +109,17 @@ const SidebarContent: React.FC<{
             />
           ))}
         </div>
-        <div className="md:mt-5 space-y-4 border-gray-150 md:pt-5 pb-2 p-2">
+        <div className="md:mt-5 space-y-4 border-gray-150 md:pt-5 pb-2 px-4 py-2">
           {/* <SidebarItemWrapper
             icon={Settings}
             title="Settings"
             onClick={handleLogout}
             url=""
           /> */}
-          <SidebarItemWrapper
+          <SidebarItem
             icon={LogOutIcon}
             title="Log out"
             onClick={handleLogout}
-            url=""
           />
         </div>
       </motion.div>

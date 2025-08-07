@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Hero } from "@/assets/png";
+import { Hero, Logo } from "@/assets/png";
 import { Button, Input } from "@/components/shared";
 import { useRegisterMutation } from "@/services";
 import { useFormik } from "formik";
@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { APP_PATHS } from "@/constants";
 import { registerSchema } from "@/validations";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const Register = () => {
   const router = useRouter();
@@ -58,9 +59,9 @@ const Register = () => {
         ></div>
         <div className="flex justify-center items-center">
           <div className="w-[522px] px-5 space-y-5">
-            <div>#Logo</div>
-            <div>
-              <h3 className="font-semibold text-xl">Sign-In</h3>
+            <div className="flex items-center justify-center gap-2 mb-5">
+              <Image src={Logo} width={50} height={50} alt="Logo" />
+              <p className="font-semibold text-2xl">EduSphere</p>
             </div>
             <div>
               <Input

@@ -9,7 +9,7 @@ const Header: FC<{
 }> = ({ sideNavIsOpen, handleToggleDrawer }) => {
   return (
     <div
-      className={`${styles["wrapper"]} border-b z-40 w-full sticky top-0 bg-white`}
+      className={`${styles["wrapper"]} z-10 w-full sticky top-0 bg-white`}
     >
       <header
         className={`${styles.container} ${

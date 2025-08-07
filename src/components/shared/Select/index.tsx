@@ -111,9 +111,9 @@ function Select({
         disabled={disabled}
         multiple={multiple}
       >
-        <div className="relative rounded-[3px] border-[1px] border-gray-300 border-solid">
+        <div className="relative rounded-[8px] border-[1px] border-gray-300 border-solid">
           <Listbox.Button
-            className={`relative w-full cursor-pointer rounded-[3px] px-4 py-3 text-left focus:outline-none sm:text-sm flex items-center ${
+            className={`relative w-full cursor-pointer rounded-[3px] px-4 py-3.5 text-left focus:outline-none sm:text-sm flex items-center ${
               disabled && "cursor-not-allowed"
             }`}
           >

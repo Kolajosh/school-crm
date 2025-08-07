@@ -30,4 +30,9 @@ export const endpoints = {
     getQualificationAndSpecializationDropdown: "/teachers/dropdown-options",
     addTeacher: "/teachers",
   },
+  students: {
+    getStudents: "/students",
+    getQualificationAndSpecializationDropdown: "/students/dropdown-options",
+    addStudent: "/students",
+  },
 };

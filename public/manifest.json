@@ -1,6 +1,6 @@
 {
-  "name": "School CRM",
-  "short_name": "CRM",
+  "name": "EduSphere",
+  "short_name": "EDS",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

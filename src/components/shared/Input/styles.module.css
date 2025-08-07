@@ -5,9 +5,9 @@
 .container input {
   width: 100%;
   background-color: var(--app-white);
-  border-radius: 3px;
+  border-radius: 8px;
   border: 1px solid #c4c4d0;
-  /* height: 48px; */
+  height: 42px;
   padding: 6px 10px;
   font-size: 0.875rem;
   -webkit-appearance: none;

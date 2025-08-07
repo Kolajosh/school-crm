@@ -23,7 +23,7 @@ const Sidebar: React.FC<{
 
   return (
     <div className="relative">
-      <div className="hidden md:block md:sticky top-0 left-0 z-50">
+      <div className="hidden md:block md:sticky top-0 left-0 z-10">
         <SidebarContent isOpen={sidebarOpen} />
       </div>
       <div className="md:hidden">

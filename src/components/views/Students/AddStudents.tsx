@@ -1,48 +1,42 @@
 "use client";
-import { Button, Input, Select } from "@/components/shared";
-import { APP_PATHS } from "@/constants";
-import { useTeachers } from "@/hooks";
-import { useAddNewTeacherMutation } from "@/services/teachers";
-import { getErrorMessage } from "@/utils";
-import { teacherValidationSchema } from "@/validations";
-import { useFormik } from "formik";
-import { useRouter } from "next/navigation";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useAddStudentMutation } from "@/services";
+import { studentValidationSchema } from "@/validations";
 import { toast } from "react-toastify";
+import { APP_PATHS } from "@/constants";
+import { useFormik } from "formik";
+import { getErrorMessage } from "@/utils";
+import { Button, Input, Select } from "@/components/shared";
 
-const AddEmployee = () => {
+const AddStudents = () => {
   const router = useRouter();
-  const { qualifications, specialties } = useTeachers();
-  const [addTeacherTrigger, { isLoading }] = useAddNewTeacherMutation();
+  const [triggerAddStudent, { isLoading }] = useAddStudentMutation();
 
   const initialValues = {
     name: "",
     email: "",
     phone: "",
-    subject_specialty: "",
-    qualification: "",
     date_of_birth: "",
     address: "",
     gender: "",
+    parent_id: "",
   };
 
-  const addFormik = useFormik({
+  const formik = useFormik({
     initialValues,
     onSubmit: async (values) => {
       try {
-        console.log(values);
-
-        const response = await addTeacherTrigger(values).unwrap();
+        const response = await triggerAddStudent(values).unwrap();
         if (response?.success) {
           toast.success(response?.message || "Added Successfully");
-          router.push(APP_PATHS.EMPLOYEES);
+          router.push(APP_PATHS.STUDENTS);
         }
       } catch (error) {
-        toast.error(getErrorMessage(error) || "Failed to add teacher");
-        console.log(error);
+        toast.error(getErrorMessage(error) || "Failed to add student");
       }
     },
-    validationSchema: teacherValidationSchema,
+    validationSchema: studentValidationSchema,
   });
 
   return (
@@ -50,47 +44,39 @@ const AddEmployee = () => {
       <div className="min-h-screen space-y-5">
         <div className="w-full max-w-[500px] mx-auto bg-white p-6 rounded-xl">
           <div className="mb-10">
-            <h3 className="text-xl font-medium">Add Teacher</h3>
+            <h3 className="text-xl font-medium">Add Student</h3>
             <p className="text-sm font-normal">
-              Please provide teacher details
+              Please provide student details
             </p>
           </div>
           <div>
-            <form onSubmit={addFormik.handleSubmit} className="space-y-5">
+            <form onSubmit={formik.handleSubmit} className="space-y-5">
               <div>
                 <p className="font-bold mb-3">Basic Information</p>
                 <div className="grid grid-cols-1 gap-3 items-center">
-                  <Input name="name" formik={addFormik} label="Name" />
-                  <Input name="phone" formik={addFormik} label="Phone number" />
-                  <Select
-                    name="qualification"
-                    label="Qualification"
-                    formik={addFormik}
-                    options={qualifications}
-                  />
-                  <Select
-                    name="subject_specialty"
-                    label="Subject Speciality"
-                    formik={addFormik}
-                    options={specialties}
+                  <Input name="name" formik={formik} label="Name" />
+                  <Input
+                    name="phone"
+                    formik={formik}
+                    label="Phone number (Parent's Phone Number)"
                   />
                 </div>
               </div>
               <div>
                 <p className="font-bold mb-3">Other Information</p>
                 <div className="grid grid-cols-1 gap-3 items-center">
-                  <Input name="email" formik={addFormik} label="Email" />
+                  <Input name="email" formik={formik} label="Email" />
                   <Input
                     type="date"
                     name="date_of_birth"
-                    formik={addFormik}
+                    formik={formik}
                     label="Date of Birth"
                   />
-                  <Input name="address" formik={addFormik} label="Address" />
+                  <Input name="address" formik={formik} label="Address" />
                   <Select
                     name="gender"
                     label="Gender"
-                    formik={addFormik}
+                    formik={formik}
                     options={[
                       { label: "Male", value: "male" },
                       { label: "Female", value: "female" },
@@ -102,7 +88,7 @@ const AddEmployee = () => {
                 <Button
                   text="Reset"
                   variant="outlined"
-                  onClick={addFormik.resetForm}
+                  onClick={formik.resetForm}
                   className="!w-full"
                 />
                 <Button
@@ -120,4 +106,4 @@ const AddEmployee = () => {
   );
 };
 
-export default AddEmployee;
+export default AddStudents;

@@ -23,9 +23,9 @@ const SidebarItemWrapper: React.FC<
 
   return (
     <div
-      className={`relative flex flex-col mx-2 gap-3 ${
-        isActivePath(url) && !sub ? "bg-black" : "bg-transparent"
-      } rounded-md px-2 ${sub ? "bg-gray-100 rounded-lg py-2" : ""}`}
+      className={`relative flex flex-col gap-4 px-2 ${
+        sub ? "bg-gray-100 rounded-lg py-2" : ""
+      }`}
       onClick={onClick}
     >
       <SidebarItem

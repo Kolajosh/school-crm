@@ -81,3 +81,9 @@ export const getErrorMessage = (error: any): string => {
     "An unknown error occurred"
   );
 };
+
+export function capitalizeFirstLetter(text: string) {
+  return text.replace(/\b\w/g, function (char) {
+    return char.toUpperCase();
+  });
+}

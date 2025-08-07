@@ -1,7 +1,7 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import { MetricsCard } from "./components";
-import { ProgressBar, SimpleCard } from "@/components/shared";
+import { PageLoader, ProgressBar, SimpleCard } from "@/components/shared";
 import Calendar from "react-calendar";
 import { useAdminDashboard } from "@/hooks";
 import { useAppSelector } from "@/store";
@@ -14,10 +14,16 @@ const Dashboard = () => {
   console.log(state);
 
   const [value, onChange] = useState<Value>(new Date());
-  const { dashboardData } = useAdminDashboard();
+  const { dashboardData, loading } = useAdminDashboard();
 
   const data = useMemo(() => dashboardData?.data, [dashboardData]);
   console.log(data);
+
+  if (loading) {
+    return (
+      <PageLoader showMessage isTransparent message="Loading Dashboard data" />
+    );
+  }
 
   return (
     <>

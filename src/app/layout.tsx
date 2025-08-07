@@ -5,8 +5,9 @@ import { Suspense } from "react";
 import { CombinedProviders } from "@/store/providers";
 
 export const metadata: Metadata = {
-  title: "School CRM",
-  description: "It's a simple progressive web application made with NextJS",
+  title: "EduSphere | Where Learning Meets Efficiency",
+  description:
+    "A school management system dashboard designed to simplify administration, enhance communication, and bring education closer to students, teachers, and parents.",
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["nextjs", "next14", "pwa", "next-pwa"],
