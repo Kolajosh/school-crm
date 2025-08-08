@@ -77,7 +77,7 @@ const Dashboard = () => {
             </SimpleCard>
             <SimpleCard title="New Admissions"></SimpleCard>
             <SimpleCard title="Attendance Today">
-              <div className="flex gap-4">
+              <div className="flex gap-4 overflow-x-auto">
                 {Object.entries(data?.attendance_today || {}).map(
                   ([key, value]) => (
                     <div

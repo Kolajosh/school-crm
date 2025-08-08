@@ -35,10 +35,10 @@ const Employees = () => {
               className="!w-auto"
               onClick={() => router.push(APP_PATHS.EMPLOYEES_ADD)}
             >
-              <span className="flex items-center gap-1">
+              <p className="flex items-center gap-1">
                 <Plus width={20} height={20} />
-                Add New
-              </span>
+                <span className="hidden md:block">Add New</span>
+              </p>
             </Button>
           </div>
 

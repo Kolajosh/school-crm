@@ -87,3 +87,16 @@ export function capitalizeFirstLetter(text: string) {
     return char.toUpperCase();
   });
 }
+
+// utils/getTimeIcon.ts
+export function getTimeIcon(): string {
+  const hour = new Date().getHours();
+
+  if (hour >= 6 && hour < 12) {
+    return "☀️"; // Morning
+  } else if (hour >= 12 && hour < 18) {
+    return "🌤️"; // Afternoon
+  } else {
+    return "🌙"; // Night
+  }
+}

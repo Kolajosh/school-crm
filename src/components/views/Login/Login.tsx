@@ -47,7 +47,7 @@ const Login = () => {
     <>
       <div className="w-full min-h-screen grid grid-cols-1 md:grid-cols-2">
         <div
-          className="bg-slate-500"
+          className="hidden md:block bg-slate-500"
           style={{
             backgroundImage: `url(${Hero.src})`,
             backgroundSize: "cover",
@@ -57,9 +57,12 @@ const Login = () => {
         ></div>
         <div className="flex justify-center items-center">
           <div className="w-[522px] px-5 space-y-5">
-            <div className="flex items-center justify-center gap-2 mb-5">
-              <Image src={Logo} width={50} height={50} alt="Logo" />
+            <div className="flex flex-col items-center justify-center mb-5">
+              <Image src={Logo} width={75} height={75} alt="Logo" />
               <p className="font-semibold text-2xl">EduSphere</p>
+              <p className="font-normal text-gray-500 text-base">
+                Fill in your details to login
+              </p>
             </div>
 
             <div>

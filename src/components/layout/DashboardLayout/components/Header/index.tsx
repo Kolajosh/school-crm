@@ -1,16 +1,18 @@
 "use client";
 import React, { FC } from "react";
 import styles from "./styles.module.css";
-import { Bell, Hamburger, Message, User } from "@/assets";
+import { Bell, Hamburger } from "@/assets";
+import { capitalizeFirstLetter, getTimeIcon } from "@/utils";
+import { useAppSelector } from "@/store";
 
 const Header: FC<{
   sideNavIsOpen?: boolean;
   handleToggleDrawer: () => void;
 }> = ({ sideNavIsOpen, handleToggleDrawer }) => {
+  const { role } = useAppSelector((state) => state.auth);
+
   return (
-    <div
-      className={`${styles["wrapper"]} z-10 w-full sticky top-0 bg-white`}
-    >
+    <div className={`${styles["wrapper"]} z-10 w-full sticky top-0 bg-white`}>
       <header
         className={`${styles.container} ${
           styles.nav
@@ -25,13 +27,13 @@ const Header: FC<{
         >
           <Hamburger />
         </button>
-        <p>Welcome back, Admin ☀️</p>
+        <p>
+          Hello, {capitalizeFirstLetter(role || "")} {getTimeIcon()}
+        </p>
 
         <div className="flex items-center gap-4 ml-auto">
-          <Message />
           <Bell />
           <span className="hidden md:block">Downtown High School</span>
-          <User />
         </div>
       </header>
     </div>

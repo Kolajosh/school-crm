@@ -34,10 +34,10 @@ const Students = () => {
               className="!w-auto"
               onClick={() => router.push(APP_PATHS.STUDENTS_ADD)}
             >
-              <span className="flex items-center gap-1">
+              <p className="flex items-center gap-1">
                 <Plus width={20} height={20} />
-                Add New
-              </span>
+                <span className="hidden md:block">Add New</span>
+              </p>
             </Button>
           </div>
 
@@ -95,7 +95,7 @@ const Students = () => {
                     {/* Extra details */}
                     <div className="text-xs text-gray-700 space-y-1">
                       <p>
-                        <span className="font-semibold">Employee ID:</span>{" "}
+                        <span className="font-semibold">Student ID:</span>{" "}
                         {students?.id}
                       </p>
                       <p>
